@@ -13,9 +13,10 @@ class AddPaymentRule implements Rule
      * @return void
      */
     public $event;
+
     public function __construct($event)
     {
-        $this->event    =   $event;
+        $this->event = $event;
     }
 
     /**
@@ -27,10 +28,10 @@ class AddPaymentRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $booking = Booking::where(['user_id'=>$value,'event_id'=>$this->event])->count();
-        if($booking>0){
+        $booking = Booking::where(['user_id'=>$value, 'event_id'=>$this->event])->count();
+        if ($booking > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

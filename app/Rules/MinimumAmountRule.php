@@ -12,9 +12,10 @@ class MinimumAmountRule implements Rule
      * @return void
      */
     public $type;
+
     public function __construct($type)
     {
-        $this->type=$type;
+        $this->type = $type;
     }
 
     /**
@@ -26,12 +27,11 @@ class MinimumAmountRule implements Rule
      */
     public function passes($attribute, $value)
     {
-
-         if($this->type=='partial' && $value==''){
-             return false;
-         }else{
-             return true;
-         }
+        if ($this->type == 'partial' && $value == '') {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**

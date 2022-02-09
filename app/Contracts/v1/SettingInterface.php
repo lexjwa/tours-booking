@@ -8,9 +8,9 @@
 
 namespace App\Contracts\v1;
 
-
 interface SettingInterface
 {
     public function updateSetting($data);
+
     public function setting();
 }

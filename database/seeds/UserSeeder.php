@@ -9,10 +9,8 @@ class UserSeeder extends Seeder
      *
      * @return void
      */
-
     public function run()
     {
-
         \Illuminate\Support\Facades\DB::table('users')->insert([
             'first_name' => 'Admin',
             'title' => 'Mr',

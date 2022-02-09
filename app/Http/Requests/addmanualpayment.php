@@ -28,14 +28,15 @@ class addmanualpayment extends FormRequest
         return [
             'user_id'   =>  'required',
             'event_id'  =>  'required',
-            'amount'    =>  ['required',new ManualPaymentRule($this->event_id)]
+            'amount'    =>  ['required', new ManualPaymentRule($this->event_id)],
         ];
     }
+
     public function messages()
     {
-       return[
-           'user_id.required' => 'User field is required.',
-           'event_id.required' => 'Event field is required.',
-       ];
+        return[
+            'user_id.required' => 'User field is required.',
+            'event_id.required' => 'Event field is required.',
+        ];
     }
 }

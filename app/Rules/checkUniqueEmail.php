@@ -26,12 +26,12 @@ class checkUniqueEmail implements Rule
      */
     public function passes($attribute, $value)
     {
-       $user=User::where(['email'=>$value,'authority'=>'admin'])->count();
-       if($user==0){
-           return true;
-       }else{
-           return false;
-       }
+        $user = User::where(['email'=>$value, 'authority'=>'admin'])->count();
+        if ($user == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

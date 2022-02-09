@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Contracts\v1\CampaignsInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CampaignRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CampaignsController extends Controller
 {
@@ -14,18 +14,17 @@ class CampaignsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CampaignRequest $request,CampaignsInterface $campaigns)
+    public function index(CampaignRequest $request, CampaignsInterface $campaigns)
     {
-
-        if($request->wantsJson()){
-            $result =   $campaigns->runCampaign($request->all());
-            if($result){
-                return response()->json(['error'=>false,'message'=>'Email sent'],200);
-            }else{
-                return response()->json(['error'=>true,'message'=>'Oop something went wrong'],500);
+        if ($request->wantsJson()) {
+            $result = $campaigns->runCampaign($request->all());
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'Email sent'], 200);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oop something went wrong'], 500);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
         }
     }
 

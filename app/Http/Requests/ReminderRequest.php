@@ -27,7 +27,7 @@ class ReminderRequest extends FormRequest
             'event_id'      =>  'required',
             'day_after_day' =>  'required|in:0,1',
             'weekly'        =>  'required|in:0,1',
-            'monthly'        =>  'required|in:0,1'
+            'monthly'        =>  'required|in:0,1',
         ];
     }
 }

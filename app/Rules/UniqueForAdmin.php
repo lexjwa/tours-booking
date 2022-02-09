@@ -27,12 +27,12 @@ class UniqueForAdmin implements Rule
      */
     public function passes($attribute, $value)
     {
-        $user=User::where(['email'=>$value,'authority'=>'admin'])->where('id','!=',Auth::user()->id)->count();
+        $user = User::where(['email'=>$value, 'authority'=>'admin'])->where('id', '!=', Auth::user()->id)->count();
 
-        if($user>0){
-          // dd('email valid');
+        if ($user > 0) {
+            // dd('email valid');
             return false;
-        }else{
+        } else {
             //dd('email in-valid');
             return true;
         }

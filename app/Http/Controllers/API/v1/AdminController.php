@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Contracts\v1\AdminInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\participantRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
@@ -14,18 +14,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,AdminInterface $admin)
+    public function index(Request $request, AdminInterface $admin)
     {
-        if($request->wantsJson()){
-            $result =   $admin->getUsers();
-            if($result){
-
-                return response()->json(['error'=>false,'message'=>'User List','data'=>$result],200);
-            }else{
-                return response()->json(['error'=>true,'message'=>'Un-Authenticated Access'],403);
+        if ($request->wantsJson()) {
+            $result = $admin->getUsers();
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'User List', 'data'=>$result], 200);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Un-Authenticated Access'], 403);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
         }
     }
 
@@ -34,17 +33,17 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(participantRequest $request,AdminInterface $admin)
+    public function create(participantRequest $request, AdminInterface $admin)
     {
-        if($request->wantsJson()){
-            $result =   $admin->createParticipant($request->all());
-            if($result){
-                return response()->json(['error'=>false,'message'=>'participant created','data'=>$result],201);
-            }else{
-                return response()->json(['error'=>true,'message'=>'oop something went wrong'],403);
+        if ($request->wantsJson()) {
+            $result = $admin->createParticipant($request->all());
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'participant created', 'data'=>$result], 201);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'oop something went wrong'], 403);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'check header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'check header'], 406);
         }
     }
 

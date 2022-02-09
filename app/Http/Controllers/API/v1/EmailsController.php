@@ -4,9 +4,9 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Contracts\v1\EmailsInterface;
 use App\EmailTemplates;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\EmailsRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class EmailsController extends Controller
 {
@@ -38,16 +38,16 @@ class EmailsController extends Controller
      */
     public function store(EmailsRequest $request, EmailsInterface $emails)
     {
-        if($request->wantsJson()){
+        if ($request->wantsJson()) {
             //  return $request->all();
-            $result =  $emails->storeEmails($request->all());
-            if($result){
-                return response()->json(['error'=>false,'message'=>'Email template created successfully '],200);
-            }else{
-                return response()->json(['error'=>true,'message'=>'Oop something went wrong'],500);
+            $result = $emails->storeEmails($request->all());
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'Email template created successfully '], 200);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oop something went wrong'], 500);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
         }
     }
 
@@ -59,15 +59,15 @@ class EmailsController extends Controller
      */
     public function show(Request $request, EmailsInterface $emails)
     {
-        if($request->wantsJson()){
-            $result =   $emails->getEmailTemplates();
-            if($result){
-                return response()->json(['error'=>false,'message'=>'Emails templates found','data'=>$result],201);
-            }else{
-                return response()->json(['error'=>true,'message'=>"Oops something went wrong"],500);
+        if ($request->wantsJson()) {
+            $result = $emails->getEmailTemplates();
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'Emails templates found', 'data'=>$result], 201);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oops something went wrong'], 500);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
         }
     }
 
@@ -79,30 +79,23 @@ class EmailsController extends Controller
      */
     public function edit(Request $request, $id, EmailsInterface $emails)
     {
-        if($request->wantsJson())
-        {
-            $result =   $emails->editEmail($id);
-            if($result)
-            {
-                $data   =   [
+        if ($request->wantsJson()) {
+            $result = $emails->editEmail($id);
+            if ($result) {
+                $data = [
                     'error'   => false,
                     'data'    => [
-                        'emailEdited'    =>  $result
-                    ]
+                        'emailEdited'    =>  $result,
+                    ],
                 ];
+
                 return response()->json($data, 200);
-
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oops! something went Wrong'], 400);
             }
-            else
-            {
-                return response()->json(['error'=>true,'message'=>'Oops! something went Wrong'],400);
-            }
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Accept Only JSON'], 403);
         }
-        else
-        {
-            return response()->json(['error'=>true,'message'=>'Accept Only JSON'],403);
-        }
-
     }
 
     /**
@@ -114,28 +107,29 @@ class EmailsController extends Controller
      */
     public function update(EmailsRequest $request, EmailsInterface $emails)
     {
-        if($request->wantsJson()){
-            $result =   $emails->updateEmailTemplate($request->all());
-            if($result){
-                return response()->json(['error'=>false,'message'=>'Email template updated','data'=>$result],201);
-            }else{
-                return response()->json(['error'=>true,'message'=>'Oop something went wrong'],401);
+        if ($request->wantsJson()) {
+            $result = $emails->updateEmailTemplate($request->all());
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'Email template updated', 'data'=>$result], 201);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oop something went wrong'], 401);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
-        }
-    }
-    public function generatePdf(Request $request,EmailsInterface $emails){
-        if($request->wantsJson()){
-            $result =   $emails->generatePdf($request->all());
-            if($result){
-                return response()->json(['error'=>false,'message'=>'Email template updated','data'=>$result],201);
-            }else{
-                return response()->json(['error'=>true,'message'=>'Oop something went wrong'],401);
-            }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
         }
     }
 
+    public function generatePdf(Request $request, EmailsInterface $emails)
+    {
+        if ($request->wantsJson()) {
+            $result = $emails->generatePdf($request->all());
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'Email template updated', 'data'=>$result], 201);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oop something went wrong'], 401);
+            }
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
+        }
+    }
 }

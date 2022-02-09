@@ -8,9 +8,7 @@
 
 namespace App\Contracts\v1;
 
-
 interface ReminderInterface
 {
     public function setReminder($data);
-
 }

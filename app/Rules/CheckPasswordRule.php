@@ -15,11 +15,13 @@ class CheckPasswordRule implements Rule
      * @return void
      */
     public $id;
+
     public $newPassword;
-    public function __construct($id,$newPassword)
+
+    public function __construct($id, $newPassword)
     {
-        $this->id   =   $id;
-        $this->newPassword  =   $newPassword;
+        $this->id = $id;
+        $this->newPassword = $newPassword;
     }
 
     /**
@@ -31,20 +33,16 @@ class CheckPasswordRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if($value || $this->newPassword){
-            $current_password=Auth::user()->password;
-            if(\Illuminate\Support\Facades\Hash::check($value, $current_password))
-            {
+        if ($value || $this->newPassword) {
+            $current_password = Auth::user()->password;
+            if (\Illuminate\Support\Facades\Hash::check($value, $current_password)) {
                 return true;
-            }
-            else
-            {
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return true;
         }
-
     }
 
     /**

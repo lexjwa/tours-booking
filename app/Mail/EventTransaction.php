@@ -4,9 +4,9 @@ namespace App\Mail;
 
 use App\EmailTemplates;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class EventTransaction extends Mailable
 {
@@ -18,13 +18,16 @@ class EventTransaction extends Mailable
      * @return void
      */
     public $data;
+
     public $booking;
+
     public $event;
-    public function __construct($data, $booking,$event)
+
+    public function __construct($data, $booking, $event)
     {
-        $this->data     =   $data;
-        $this->booking  =   $booking;
-        $this->event    =   $event;
+        $this->data = $data;
+        $this->booking = $booking;
+        $this->event = $event;
     }
 
     /**
@@ -35,7 +38,7 @@ class EventTransaction extends Mailable
     public function build()
     {
         $template = 'payment-invoice';
-        $email_patterns = array(
+        $email_patterns = [
             'first_name' => $this->data['first_name'],
             'last_name' => $this->data['last_name'],
             'tour_name' => $this->event['title'],
@@ -44,7 +47,7 @@ class EventTransaction extends Mailable
             'total_payable' => $this->booking['total_payment_of_event'],
             'payed_amount' => $this->booking['payed_amount'],
             'booking_reference' => $this->booking['booking_code'],
-        );
+        ];
 
         $finilizedEmail = EmailTemplates::replaceEmailVariables($template, $email_patterns);
 

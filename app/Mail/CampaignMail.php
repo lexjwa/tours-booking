@@ -4,9 +4,9 @@ namespace App\Mail;
 
 use App\EmailTemplates;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CampaignMail extends Mailable
 {
@@ -18,11 +18,13 @@ class CampaignMail extends Mailable
      * @return void
      */
     public $data;
+
     public $uniqueNumber;
+
     public function __construct($data, $uniqueNumber)
     {
-        $this->data=$data;
-        $this->uniqueNumber=$uniqueNumber;
+        $this->data = $data;
+        $this->uniqueNumber = $uniqueNumber;
     }
 
     /**
@@ -33,11 +35,12 @@ class CampaignMail extends Mailable
     public function build()
     {
         $template = 'run-campaign';
-        $email_patterns = array(
+        $email_patterns = [
             'content' =>$this->data['detail'],
             'unsubscribe' => $this->uniqueNumber,
-        );
+        ];
         $finilizedEmail = EmailTemplates::replaceEmailVariables($template, $email_patterns);
+
         return $this->from(env('MAIL_USERNAME'))
             ->subject($finilizedEmail['subject'])
             ->view('mail.campaign')

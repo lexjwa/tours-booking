@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBookingsTable extends Migration
 {
@@ -17,10 +17,10 @@ class CreateBookingsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('event_id');
             $table->integer('user_id');
-            $table->decimal('total_payment_of_event',65,2);
-            $table->enum('transaction_type',['complete','incomplete']);
-            $table->decimal('payed_amount',65,2);
-            $table->decimal('remaining_amount',65,2);
+            $table->decimal('total_payment_of_event', 65, 2);
+            $table->enum('transaction_type', ['complete', 'incomplete']);
+            $table->decimal('payed_amount', 65, 2);
+            $table->decimal('remaining_amount', 65, 2);
             $table->timestamps();
         });
     }

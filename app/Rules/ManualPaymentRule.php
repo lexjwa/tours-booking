@@ -13,10 +13,12 @@ class ManualPaymentRule implements Rule
      * @return void
      */
     public $event;
+
     public $cost;
+
     public function __construct($event)
     {
-        $this->event    =   $event;
+        $this->event = $event;
     }
 
     /**
@@ -28,11 +30,11 @@ class ManualPaymentRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $event  =   Event::where('id',$this->event)->first();
-        $this->cost =   $event->cost;
-        if($event->cost>=$value){
+        $event = Event::where('id', $this->event)->first();
+        $this->cost = $event->cost;
+        if ($event->cost >= $value) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

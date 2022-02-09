@@ -13,9 +13,10 @@ class BeforeStartDateOfEvent implements Rule
      * @return void
      */
     public $startdate;
+
     public function __construct($startDate)
     {
-        $this->startdate=$startDate;
+        $this->startdate = $startDate;
     }
 
     /**
@@ -27,13 +28,13 @@ class BeforeStartDateOfEvent implements Rule
      */
     public function passes($attribute, $value)
     {
-      //  dd(Carbon::parse($this->startdate),Carbon::parse($value));
-        if(Carbon::parse($this->startdate)<=Carbon::parse($value)){
+        //  dd(Carbon::parse($this->startdate),Carbon::parse($value));
+        if (Carbon::parse($this->startdate) <= Carbon::parse($value)) {
 //            dd('start date of event is less than event reminder date');
             return false;
-        }else{
+        } else {
             return true;
-        //    dd('olta');
+            //    dd('olta');
         }
     }
 

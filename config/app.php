@@ -14,9 +14,8 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'url'   =>  env('APP_URL','http://tours-booking.local/'),
+    'url'   =>  env('APP_URL', 'http://tours-booking.local/'),
     'email' =>  env('MAIL_USERNAME'),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +177,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
 
     ],
 

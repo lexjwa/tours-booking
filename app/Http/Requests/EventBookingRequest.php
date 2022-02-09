@@ -25,7 +25,7 @@ class EventBookingRequest extends FormRequest
     {
         return [
             'event'=>'required|exists:events,id',
-            'email' => 'required|email'
+            'email' => 'required|email',
 
         ];
     }

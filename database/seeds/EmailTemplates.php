@@ -16,7 +16,7 @@ class EmailTemplates extends Seeder
             [
                 'name'                  =>  'New Admin User',
                 'slug'                  =>  'new-admin-user',
-                'subject'               =>  'Your account created successfully' ,
+                'subject'               =>  'Your account created successfully',
                 'message'               =>  '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
                                             <tbody>
                                                 <tr>
@@ -86,7 +86,7 @@ class EmailTemplates extends Seeder
             [
                 'name'                  =>  'Run Campaign',
                 'slug'                  =>  'run-campaign',
-                'subject'               =>  'RCC2 Events Campaign' ,
+                'subject'               =>  'RCC2 Events Campaign',
                 'message'               =>  '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
                                             <tbody>
                                                 <tr>
@@ -155,7 +155,7 @@ class EmailTemplates extends Seeder
             [
                 'name'                  =>  'Payment Invoice',
                 'slug'                  =>  'payment-invoice',
-                'subject'               =>  'RCC2 Event Booking Invoice ' ,
+                'subject'               =>  'RCC2 Event Booking Invoice ',
                 'message'               =>  '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
                 <tbody>
                 <tr>
@@ -232,14 +232,10 @@ class EmailTemplates extends Seeder
                 'updated_at'            =>  null,
             ],
 
-
-
-
-
             [
                 'name'                  =>  'Partial Payments Cron Email',
                 'slug'                  =>  'partial-payments-cron-email',
-                'subject'               =>  'Event Booking Payment Reminder' ,
+                'subject'               =>  'Event Booking Payment Reminder',
                 'message'               =>  '<table align="center" border="0" cellpadding="0" cellspacing="0" width="600">
                                             <tbody>
                                             <tr>
@@ -315,9 +311,6 @@ class EmailTemplates extends Seeder
                 'created_at'            =>  \Carbon\Carbon::now(),
                 'updated_at'            =>  null,
             ],
-
-
-
 
         ]);
     }

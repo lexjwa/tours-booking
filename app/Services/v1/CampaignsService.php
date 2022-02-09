@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Services\v1;
-
 
 use App\Booking;
 use App\Contracts\v1\CampaignsInterface;
@@ -23,51 +21,48 @@ class CampaignsService implements CampaignsInterface
         } elseif (array_key_exists('all', $data)) {
             $this->allEmail($data);
         }
-        return true;
 
+        return true;
     }
 
     public function singleEmail($data)
     {
-       // dd($data['email']);
-        $participant=User::where('id',$data['email'])
+        // dd($data['email']);
+        $participant = User::where('id', $data['email'])
             ->where('reminder_status', 1)
             ->where('status', 1)
             ->first();
-       if(Mail::to($participant->email)->send(new CampaignMail($data, $participant->unique_number))){
-           return true;
-       }else{
-           return false;
-       }
-
+        if (Mail::to($participant->email)->send(new CampaignMail($data, $participant->unique_number))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function eventEmail($data)
     {
-         $event=Booking::where('event_id',$data['event'])->get();
+        $event = Booking::where('event_id', $data['event'])->get();
         //dd($event);
-         foreach ($event as $item){
-             $participant=User::where('id',$item->user_id)
+        foreach ($event as $item) {
+            $participant = User::where('id', $item->user_id)
                                 ->where('reminder_status', 1)
                                 ->where('status', 1)
                                 ->first();
-             if($participant)
-             {
-                 Mail::to($participant->email)->send(new CampaignMail($data, $participant->unique_number));
-             }
-         }
-         return true;
+            if ($participant) {
+                Mail::to($participant->email)->send(new CampaignMail($data, $participant->unique_number));
+            }
+        }
+
+        return true;
     }
 
     public function allEmail($data)
     {
-        $participant=User::where('authority','participant')->where('reminder_status',1)->get();
-        foreach ($participant as $value){
-
+        $participant = User::where('authority', 'participant')->where('reminder_status', 1)->get();
+        foreach ($participant as $value) {
             Mail::to($value->email)->send(new CampaignMail($data, $value->unique_number));
-
         }
-        return true;
 
+        return true;
     }
 }

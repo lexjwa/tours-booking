@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Contracts\v1\ReminderInterface;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ReminderRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ReminderController extends Controller
 {
@@ -24,18 +24,18 @@ class ReminderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function setReminders(ReminderRequest $request,ReminderInterface $reminder)
+    public function setReminders(ReminderRequest $request, ReminderInterface $reminder)
     {
-        if($request->wantsJson()){
-          //  return $request->all();
-            $result =  $reminder->setReminder($request->all());
-            if($result){
-                return response()->json(['error'=>false,'message'=>'reminder set '],200);
-            }else{
-                return response()->json(['error'=>true,'message'=>'Oop something went wrong'],500);
+        if ($request->wantsJson()) {
+            //  return $request->all();
+            $result = $reminder->setReminder($request->all());
+            if ($result) {
+                return response()->json(['error'=>false, 'message'=>'reminder set '], 200);
+            } else {
+                return response()->json(['error'=>true, 'message'=>'Oop something went wrong'], 500);
             }
-        }else{
-            return response()->json(['error'=>true,'message'=>'Check Header'],406);
+        } else {
+            return response()->json(['error'=>true, 'message'=>'Check Header'], 406);
         }
     }
 

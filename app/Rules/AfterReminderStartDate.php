@@ -13,9 +13,10 @@ class AfterReminderStartDate implements Rule
      * @return void
      */
     public $startDate;
+
     public function __construct($startDate)
     {
-        $this->startDate=$startDate;
+        $this->startDate = $startDate;
     }
 
     /**
@@ -27,10 +28,10 @@ class AfterReminderStartDate implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(Carbon::parse($value)>=Carbon::parse($this->startDate)){
+        if (Carbon::parse($value) >= Carbon::parse($this->startDate)) {
             return false;
-        }else{
-           return true;
+        } else {
+            return true;
         }
     }
 
