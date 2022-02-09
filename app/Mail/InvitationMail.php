@@ -4,9 +4,9 @@ namespace App\Mail;
 
 use App\EmailTemplates;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class InvitationMail extends Mailable
 {
@@ -21,7 +21,7 @@ class InvitationMail extends Mailable
 
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
     }
 
     /**
@@ -32,12 +32,12 @@ class InvitationMail extends Mailable
     public function build()
     {
         $template = 'new-admin-user';
-        $email_patterns = array(
+        $email_patterns = [
             'first_name' => $this->data[0]->first_name,
             'last_name' => $this->data[0]->last_name,
             'email' => $this->data[0]->email,
             'password' => $this->data[1],
-        );
+        ];
 
         $finilizedEmail = EmailTemplates::replaceEmailVariables($template, $email_patterns);
 
@@ -45,7 +45,6 @@ class InvitationMail extends Mailable
             ->subject($finilizedEmail['subject'])
             ->view('mail.invitation')
             ->with('content', $finilizedEmail['content']);
-
 
         //return $this->from(env('MAIL_USERNAME'))->view('mail.invitation');
     }

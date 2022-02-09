@@ -8,12 +8,15 @@
 
 namespace App\Contracts\v1;
 
-
 interface EmailsInterface
 {
     public function storeEmails($data);
+
     public function getEmailTemplates();
+
     public function editEmail($id);
+
     public function updateEmailTemplate($dataToUpdate);
+
     public function generatePdf($data);
 }

@@ -12,11 +12,13 @@ class ValidationSchedularRule implements Rule
      * @return void
      */
     public $start;
+
     public $end;
-    public function __construct($start,$end)
+
+    public function __construct($start, $end)
     {
-        $this->start=$start;
-        $this->end=$end;
+        $this->start = $start;
+        $this->end = $end;
     }
 
     /**
@@ -28,9 +30,9 @@ class ValidationSchedularRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        if($value==true || $value==""){
+        if ($value == true || $value == '') {
             return false;
-        }else{
+        } else {
             return true;
         }
     }

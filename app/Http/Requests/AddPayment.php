@@ -27,8 +27,8 @@ class AddPayment extends FormRequest
     {
         return [
             'event_id'  =>['required'],
-            'user_id'  =>['required',new AddPaymentRule($this->event_id)],
-            'amount'  =>['required',new CheckRemainingAmountRule($this->event_id,$this->user_id)]
+            'user_id'  =>['required', new AddPaymentRule($this->event_id)],
+            'amount'  =>['required', new CheckRemainingAmountRule($this->event_id, $this->user_id)],
         ];
     }
 }

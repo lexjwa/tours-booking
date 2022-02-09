@@ -27,7 +27,7 @@ class CreateAdminUser extends FormRequest
     {
         return [
 
-            'email'=>['required','email',new checkUniqueEmail()],
+            'email'=>['required', 'email', new checkUniqueEmail()],
             'first_name'=>'required',
             'last_name'=>'required',
             'password'=>'required',

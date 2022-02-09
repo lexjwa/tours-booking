@@ -3,9 +3,9 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class ForgetMail extends Mailable
 {
@@ -17,11 +17,13 @@ class ForgetMail extends Mailable
      * @return void
      */
     public $user;
+
     public $token;
-    public function __construct($user,$token)
+
+    public function __construct($user, $token)
     {
-        $this->user=$user;
-        $this->token=$token;
+        $this->user = $user;
+        $this->token = $token;
     }
 
     /**

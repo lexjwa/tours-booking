@@ -4,9 +4,9 @@ namespace App\Mail;
 
 use App\EmailTemplates;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 
 class CronMail extends Mailable
 {
@@ -18,9 +18,10 @@ class CronMail extends Mailable
      * @return void
      */
     public $data;
+
     public function __construct($data)
     {
-        $this->data=$data;
+        $this->data = $data;
     }
 
     /**
@@ -33,7 +34,7 @@ class CronMail extends Mailable
 
        // dd($this->data);
         $template = 'partial-payments-cron-email';
-        $email_patterns = array(
+        $email_patterns = [
             'first_name' => $this->data->first_name,
             'last_name' => $this->data->last_name,
             'event_title' => $this->data->event_title,
@@ -41,10 +42,10 @@ class CronMail extends Mailable
             'total_payable' => $this->data->total_payable,
             'payed_amount' => $this->data->payed_amount,
             'unique_number' => $this->data->email,
-        );
+        ];
         $finilizedEmail = EmailTemplates::replaceEmailVariables($template, $email_patterns);
 
-       // dd($finilizedEmail);
+        // dd($finilizedEmail);
         return $this->from(env('MAIL_USERNAME'))
             ->subject($finilizedEmail['subject'])
             ->view('mail.cron')

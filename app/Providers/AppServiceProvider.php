@@ -54,5 +54,4 @@ class AppServiceProvider extends ServiceProvider
             'App\Services\v1\CampaignsService'
         );
     }
-
 }

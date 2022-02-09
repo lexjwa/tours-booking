@@ -29,6 +29,7 @@ class CampaignRequest extends FormRequest
 
         ];
     }
+
     public function messages()
     {
         return [

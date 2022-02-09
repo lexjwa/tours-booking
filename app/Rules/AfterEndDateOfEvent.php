@@ -13,9 +13,10 @@ class AfterEndDateOfEvent implements Rule
      * @return void
      */
     public $eventEnd;
+
     public function __construct($eventEnd)
     {
-        $this->eventEnd=$eventEnd;
+        $this->eventEnd = $eventEnd;
     }
 
     /**
@@ -27,10 +28,10 @@ class AfterEndDateOfEvent implements Rule
      */
     public function passes($attribute, $value)
     {
-        if(Carbon::parse($this->eventEnd)<=Carbon::parse($value)){
+        if (Carbon::parse($this->eventEnd) <= Carbon::parse($value)) {
 //            dd('start date of event is less than event reminder date');
             return false;
-        }else{
+        } else {
             return true;
             //    dd('olta');
         }

@@ -8,22 +8,21 @@ class EmailTemplates extends Model
 {
     protected $table = 'email_templates';
 
-    static function replaceEmailVariables($template, $email_patterns = null)
+    public static function replaceEmailVariables($template, $email_patterns = null)
     {
-        $mail_template = EmailTemplates::where('slug',$template)->first();
-        if($mail_template){
+        $mail_template = self::where('slug', $template)->first();
+        if ($mail_template) {
             $subject = $mail_template->subject;
             $content = $mail_template->message;
             foreach ($email_patterns as $key => $value) {
-
                 $subject = str_replace('['.$key.']', $value, $subject);
                 $content = str_replace('['.$key.']', $value, $content);
-
             }
-            return array(
+
+            return [
                 'subject' => $subject,
                 'content' => $content,
-            );
+            ];
         }
     }
 }

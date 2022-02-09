@@ -9,13 +9,14 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-   protected $toTruncate = ['users','payment_reminders','settings', 'email_templates'];
+    protected $toTruncate = ['users', 'payment_reminders', 'settings', 'email_templates'];
+
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-         $this->call(UserSeeder::class);
-         $this->call(ReminderSeeder::class);
-         $this->call(SettingSeeder::class);
-         $this->call(EmailTemplates::class);
+        $this->call(UserSeeder::class);
+        $this->call(ReminderSeeder::class);
+        $this->call(SettingSeeder::class);
+        $this->call(EmailTemplates::class);
     }
 }

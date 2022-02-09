@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class AddFieldToeventsTable extends Migration
 {
@@ -15,7 +15,6 @@ class AddFieldToeventsTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->decimal('minimum_amount')->nullable();
-
         });
     }
 
@@ -28,7 +27,6 @@ class AddFieldToeventsTable extends Migration
     {
         Schema::table('events', function (Blueprint $table) {
             $table->dropColumn('minimum_amount');
-
         });
     }
 }

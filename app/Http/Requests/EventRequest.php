@@ -41,8 +41,8 @@ class EventRequest extends FormRequest
             'start_time'    =>  'required',
             'end_time'      =>  'required',
 
-             'start_date_for_day'=>['nullable','date','after:today',new BeforeStartDateOfEvent($this->start_date)],
-            'end_date_for_day'=>['nullable','date','after:today',new AfterEndDateOfEvent($this->start_date),new AfterReminderStartDate($this->start_date_for_day)]
+            'start_date_for_day'=>['nullable', 'date', 'after:today', new BeforeStartDateOfEvent($this->start_date)],
+            'end_date_for_day'=>['nullable', 'date', 'after:today', new AfterEndDateOfEvent($this->start_date), new AfterReminderStartDate($this->start_date_for_day)],
         ];
     }
 }

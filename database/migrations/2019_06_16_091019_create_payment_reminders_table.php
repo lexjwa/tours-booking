@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePaymentRemindersTable extends Migration
 {
@@ -14,7 +14,6 @@ class CreatePaymentRemindersTable extends Migration
     public function up()
     {
         Schema::create('payment_reminders', function (Blueprint $table) {
-
             $table->bigIncrements('id');
             $table->boolean('day_after_day')->default(false);
             $table->boolean('weekly')->default(false);

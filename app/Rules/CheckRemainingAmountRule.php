@@ -13,12 +13,15 @@ class CheckRemainingAmountRule implements Rule
      * @return void
      */
     public $remaining;
+
     public $user_id;
+
     public $event;
-    public function __construct($event,$user)
+
+    public function __construct($event, $user)
     {
-        $this->user_id  =   $user;
-        $this->event    =   $event;
+        $this->user_id = $user;
+        $this->event = $event;
     }
 
     /**
@@ -30,12 +33,12 @@ class CheckRemainingAmountRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        $booking = Booking::where(['user_id'=>$this->user_id,'event_id'=>$this->event])->first();
+        $booking = Booking::where(['user_id'=>$this->user_id, 'event_id'=>$this->event])->first();
 
-        $this->remaining=$booking['remaining_amount'];
-        if($booking['remaining_amount']==$value){
+        $this->remaining = $booking['remaining_amount'];
+        if ($booking['remaining_amount'] == $value) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
